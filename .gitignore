@@ -82,6 +82,7 @@ coverage.xml
 .DS_Store
 
 include/*
-test-files/*
+video-src/*
+video-destination/*
 yolov8x.pt
 bin/
