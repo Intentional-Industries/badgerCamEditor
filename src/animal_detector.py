@@ -14,8 +14,8 @@ def detect_and_cut(video_path, segment_directory, model_path, detected_animals):
     end_time = None
     segments = []
     
-    # Load YOLO model
-    model = YOLO(model_path)
+    # Load YOLOv8 model (this will automatically download yolov8x.pt if needed)
+    model = YOLO('yolov8x')
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -23,15 +23,22 @@ def detect_and_cut(video_path, segment_directory, model_path, detected_animals):
             break
 
         if frame_index % frame_skip == 0:
+            # Run inference
             results = model(frame)
+
+            # Iterate over each result
             animal_detected = False
-            for result in results.pred:
-                for obj in result:
-                    class_name = model.names[int(obj[5])]
+            for result in results:  # Iterate over list of results
+                boxes = result.boxes  # Get the boxes object
+                for box in boxes:  # Iterate over individual detected boxes
+                    class_id = int(box.cls[0])  # Get class ID
+                    class_name = model.names[class_id]  # Map ID to class name
+
                     if class_name in detected_animals:
                         animal_detected = True
-                        break
-            
+                        break  # We found an animal, no need to keep checking
+
+            # Record segment times if an animal was detected
             if animal_detected:
                 if start_time is None:
                     start_time = frame_index / frame_rate
