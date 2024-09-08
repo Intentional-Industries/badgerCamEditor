@@ -67,6 +67,7 @@ coverage.xml
 .env.test
 .env.staging
 .venv/
+venv/
 
 # PyCharm
 .idea/
