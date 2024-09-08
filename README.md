@@ -16,9 +16,9 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 
-mkdir src/input_directory src/output_directory src/segment_directory src/processed_directory
+mkdir input_directory output_directory segment_directory processed_directory
 
-chmod -R u+w src/input_directory src/output_directory src/segment_directory src/processed_directory 
+chmod -R u+w input_directory output_directory segment_directory processed_directory 
 
 # now put the source file in src/input_directory
 
@@ -40,10 +40,11 @@ badgerCamEditor/
 │   ├── utils
 |       ├── compressor.py      # turns avi to mp4
 |       ├── restoreProcesses.py # cleans up a mess if files are in the wrong place
+│   ├── input_directory
+│   ├── output_directory
+│   ├── segment_directory
+│   ├── processed_directory
 ├── requirements.txt      # Dependency list (included in the repo)
 └── .gitignore            # File to ignore unnecessary files like venv/
 ```
 then just run the main.py script and hide behind your wall incase your lap top blows up
-
-
-

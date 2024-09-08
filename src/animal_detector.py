@@ -13,9 +13,9 @@ def detect_and_cut(video_path, segment_directory, model_path, detected_animals):
     start_time = None
     end_time = None
     segments = []
-    
-    # Load YOLOv8 model (this will automatically download yolov8x.pt if needed)
-    model = YOLO('yolov8x')
+
+    # Load YOLOv8 model (automatically download yolov8x.pt if needed)
+    model = YOLO(model_path)
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -26,17 +26,18 @@ def detect_and_cut(video_path, segment_directory, model_path, detected_animals):
             # Run inference
             results = model(frame)
 
-            # Iterate over each result
+            # Filter detections for specific animals
             animal_detected = False
-            for result in results:  # Iterate over list of results
-                boxes = result.boxes  # Get the boxes object
-                for box in boxes:  # Iterate over individual detected boxes
-                    class_id = int(box.cls[0])  # Get class ID
-                    class_name = model.names[class_id]  # Map ID to class name
+            for result in results:  # Iterate over each result
+                for box in result.boxes:  # Iterate over detected boxes
+                    class_id = int(box.cls[0])  # Get the class ID
+                    class_name = model.names[class_id]  # Get the class name from ID
 
+                    # Check if the detected class is in the list of animals of interest
                     if class_name in detected_animals:
+                        print(f"Detected: {class_name}")
                         animal_detected = True
-                        break  # We found an animal, no need to keep checking
+                        break
 
             # Record segment times if an animal was detected
             if animal_detected:
@@ -48,9 +49,9 @@ def detect_and_cut(video_path, segment_directory, model_path, detected_animals):
                     segments.append((start_time, end_time))
                     start_time = None
                     end_time = None
-        
+
         frame_index += 1
-    
+
     cap.release()
 
     # If any segments were found, process them

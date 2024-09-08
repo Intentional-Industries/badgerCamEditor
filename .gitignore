@@ -88,3 +88,7 @@ video-destination/*
 yolov8x.pt
 bin/
 input_directory/
+oputput_directory/
+processed_directory/
+segment_directory/
+
