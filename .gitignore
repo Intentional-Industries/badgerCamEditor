@@ -87,3 +87,4 @@ video-src/*
 video-destination/*
 yolov8x.pt
 bin/
+input_directory/

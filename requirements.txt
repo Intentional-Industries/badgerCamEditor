@@ -1,3 +1,3 @@
 opencv-python
 ultralytics  # For YOLOv8
-shutil  # Part of Python standard library, no need to install separately
+# shutil  # Part of Python standard library, no need to install separately
