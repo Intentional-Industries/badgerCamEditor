@@ -4,10 +4,10 @@ from animal_detector import detect_and_cut
 from video_stitcher import concatenate_segments
 
 # Paths
-input_directory = '/Users/howardkitto/Projects/badgerCamEditor/badgerCamEditor/test-files'
-output_directory = '/path/to/output_stitched_videos'
-segment_directory = '/path/to/output_segments'
-processed_directory = '/path/to/processed_videos'  # Directory for processed files
+input_directory = '/test-files'
+output_directory = '/output_directory'
+segment_directory = '/segment_directory'
+processed_directory = '/processed_directory'  # Directory for processed files
 model_path = 'yolov8x.pt'  # Path to your YOLO model
 
 # Create output, segment, and processed directories if they don't exist

@@ -8,11 +8,15 @@ To run this I think you need to...
 
 python3 -m venv bagerCamEditor
 
+cd badgerCamEditor
+
 source bagerCamEditor/bin/activate
 
-mkdir src
+git clone https://github.com/Intentional-Industries/badgerCamEditor.git
 
-cd src
+cd badgerCamEditor
+
+mkdir input_directory output_directory segment_directory processed_directory
 
 pip install ultralytics
 
