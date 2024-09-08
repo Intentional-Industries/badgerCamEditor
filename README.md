@@ -1,4 +1,4 @@
-# Badger Can Editor
+# Badger Cam Editor
 
 ## Hi Morgan 
 
